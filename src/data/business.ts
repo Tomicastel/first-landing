@@ -33,6 +33,7 @@ export const membershipPlans: MembershipPlan[] = [
       "8 clases al mes",
       "Acceso a zona de fuerza",
       "Evaluación inicial",
+      "Reserva sin prioridad"
     ],
     accent: false,
   },
