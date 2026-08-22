@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+:root { color-scheme: dark; --ease-premium: cubic-bezier(.22, 1, .36, 1); }
+html { scroll-behavior: smooth; background: #0f0f11; overflow-x: hidden; }
+body { margin: 0; width: 100%; min-width: 0; max-width: 100%; overflow-x: hidden; background: #0f0f11; font-family: 'Manrope', sans-serif; }
+:where(a, button):focus-visible { outline: 3px solid #d4ff00; outline-offset: 4px; }
+.skip-link { position: fixed; top: 1rem; left: 1rem; z-index: 50; transform: translateY(-200%); background: #d4ff00; color: #0f0f11; padding: .75rem 1rem; font-weight: 800; }
+.skip-link:focus-visible { transform: translateY(0); }
+.font-display { font-family: 'Archivo Black', sans-serif; }
+.section-label { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: .2em; color: #d4ff00; }
+.section-title { font-family: 'Archivo Black', sans-serif; font-size: clamp(2.6rem, 5vw, 5.5rem); line-height: .84; letter-spacing: -.08em; text-transform: uppercase; }
+.footer-label { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: .18em; color: #d4ff00; }
+
+section {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition: opacity 750ms var(--ease-premium), transform 750ms var(--ease-premium);
+}
+section.is-visible { opacity: 1; transform: translateY(0); }
+#inicio [data-reveal-delay] {
+  opacity: 0;
+  transform: translateY(.75rem);
+  transition: opacity 550ms var(--ease-premium), transform 550ms var(--ease-premium);
+}
+#inicio.is-visible [data-reveal-delay] { opacity: 1; transform: translateY(0); }
+#inicio [data-reveal-delay="1"] { transition-delay: 100ms; }
+#inicio [data-reveal-delay="2"] { transition-delay: 180ms; }
+#inicio [data-reveal-delay="3"] { transition-delay: 260ms; }
+#inicio [data-reveal-delay="4"] { transition-delay: 340ms; }
+.mobile-menu {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-.5rem);
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+  pointer-events: none;
+}
+.mobile-menu[data-menu-open="true"] {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+article.rounded-xl {
+  transition:
+    transform 300ms var(--ease-premium),
+    border-color 220ms ease,
+    background-color 220ms ease,
+    box-shadow 300ms var(--ease-premium);
+}
+article.rounded-xl:hover { transform: translateY(-.25rem); }
+#membresias article.rounded-xl:hover { box-shadow: 0 1rem 3rem rgb(212 255 0 / .12); }
+#entrenadores article.rounded-xl:hover, blockquote.rounded-xl:hover { box-shadow: 0 1rem 3rem rgb(0 0 0 / .28); }
+#membresias a, #prueba a, header a[class*='bg-[#d4ff00]'] {
+  transition: transform 220ms var(--ease-premium), color 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 220ms var(--ease-premium);
+}
+#prueba a:hover { box-shadow: 0 .9rem 2.4rem rgb(15 15 17 / .35); }
+header a[class*='bg-[#d4ff00]']:hover, #inicio a[class*='bg-[#d4ff00]']:hover { box-shadow: 0 .8rem 2rem rgb(212 255 0 / .18); }
+body > a[class*='bg-[#25D366]'] { box-shadow: 0 .8rem 2.4rem rgb(0 0 0 / .38); }
+body > a[class*='bg-[#25D366]']:hover { box-shadow: 0 1rem 3rem rgb(37 211 102 / .22); }
+footer a[href='#inicio'] { transition: color 180ms ease, transform 220ms var(--ease-premium); }
+footer a[href='#inicio']:hover { transform: translateY(-2px); }
+footer a[href='#inicio'] span { display: inline-block; transition: transform 220ms var(--ease-premium); }
+footer a[href='#inicio']:hover span { transform: translateY(-3px); }
+
+@media (max-width: 639px) {
+  .section-title br { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  section, section.is-visible, #inicio [data-reveal-delay], #inicio.is-visible [data-reveal-delay] { opacity: 1 !important; transform: none !important; }
+}
