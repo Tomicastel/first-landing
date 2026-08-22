@@ -35,14 +35,13 @@ jobs:
         run: corepack pnpm build
 
       - name: Deploy dist to HostGator
-        uses: appleboy/scp-action@v0.1.7
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
-          host: ${{ secrets.SFTP_HOST }}
+          server: ${{ secrets.SFTP_HOST }}
           port: ${{ secrets.SFTP_PORT }}
           username: ${{ secrets.SFTP_USERNAME }}
-          key: ${{ secrets.SFTP_PRIVATE_KEY }}
-          passphrase: ${{ secrets.SFTP_PASSPHRASE }}
-          source: "dist/*"
-          target: ${{ secrets.SFTP_TARGET }}
-          strip_components: 1
-          overwrite: true
+          ssh_private_key: ${{ secrets.SFTP_PRIVATE_KEY }}
+          ssh_passphrase: ${{ secrets.SFTP_PASSPHRASE }}
+          local_path: "./dist/*"
+          remote_path: ${{ secrets.SFTP_TARGET }}
+          sftp_only: true
